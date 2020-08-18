@@ -30,11 +30,15 @@ cities = []
 
 def cityreader(cities=[]):
     # TODO Implement the functionality to read from the 'cities.csv' file
-    with open('cities.csv', newline='') as csvfile:
-        reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+    with open('cities.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        next(csvreader)
 
-        for row in reader:
-            print(','.join(row))
+        for row in csvreader:
+            a_city = City(str(row[0]), float(row[3]), float(row[4]))
+            cities.append(a_city)
+
+    return cities
 
 
 # Ensure that the lat and lon values are all floats
